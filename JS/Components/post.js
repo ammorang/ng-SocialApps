@@ -2,12 +2,12 @@
 
 const post = {
   bindings: {
-    totalPosts: "<"
+    post: "<"
   },
   template: `
   <section>
-    <div ng-repeat="post in $ctrl.totalPosts"> 
-    <p>{{ post.title}}</p> {{ post.thoughts}}</div>
+    <h5>{{ $ctrl.post.title}}</h5> 
+    <h6="bodyText">{{ $ctrl.post.body}}</h6>
   </section>
   `,
 };
@@ -16,8 +16,3 @@ const post = {
 angular
   .module("app")
   .component("post", post);
-
-
-// The post component displays a single post in the list.
-// It has one inbound binding called post.
-

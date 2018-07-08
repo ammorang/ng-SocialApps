@@ -3,19 +3,21 @@
 const socialPosts = {
   template: `
     <div>
-      <h1 style='color: blue'>Twatter</h1>
-      <post-form on-submit="$ctrl.onSubmit(newPost);"></post-form>
-      <post total-posts="$ctrl.totalPosts"></post>
+      <h1 class="appTitle">Social Posts</h1>
+      <post-form add-post="$ctrl.addPost(newPost);"></post-form>
+      <section class="allposts">
+        <post class="posted" ng-repeat="post in $ctrl.allPosts" post="post"></post> 
+      </section>
     </div>
   `,
-  controller: function($element) {
+  controller: function() {
     const vm = this;
-    vm.totalPosts = [];
-    vm.onSubmit = (newPost) => {
-      vm.totalPosts.push({
+    vm.allPosts = [];
+    vm.addPost = (newPost) => {
+      vm.allPosts.push({
         title: newPost.title,
-        thoughts: newPost.thoughts
-      });
+        body: newPost.body
+      });      
     };
   }
 };
@@ -25,8 +27,3 @@ angular
   .module("app")
   .component("socialPosts", socialPosts);
 
-
-// The socialPosts component is the parent component.
-// It owns the list of posts.
-// Its template contains the ng-repeat for posts and the “New Post” button.
-// The other two components are created inside of its template.
